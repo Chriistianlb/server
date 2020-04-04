@@ -1326,6 +1326,15 @@ void ProtocolGame::sendWorldLight(LightInfo lightInfo)
 	writeToOutputBuffer(playermsg);
 }
 
+void ProtocolGame::sendTibiaTime(int32_t time)
+{
+	playermsg.reset();
+	playermsg.addByte(0xEF);
+	playermsg.addByte(time / 60);
+	playermsg.addByte(time % 60);
+	writeToOutputBuffer(playermsg);
+}
+
 void ProtocolGame::sendCreatureWalkthrough(const Creature* creature, bool walkthrough)
 {
 	if (!canSee(creature)) {
