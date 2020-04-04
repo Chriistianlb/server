@@ -252,7 +252,6 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 	setChecksumMethod(CHECKSUM_METHOD_SEQUENCE);
 	setChecksumMethod(CHECKSUM_METHOD_ADLER32);
 
-	uint32_t clientVersion = msg.get<uint32_t>();
 	msg.skipBytes(3); // U8 client type, U16 dat revision
 
 	if (!Protocol::RSA_decrypt(msg)) {
