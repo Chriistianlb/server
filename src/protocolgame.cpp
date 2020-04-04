@@ -3671,19 +3671,19 @@ void ProtocolGame::AddCreature(const Creature* creature, bool known, uint32_t re
 		}
 	}
 
-		if (creatureType == CREATURETYPE_SUMMON_OTHERS) {
-			creatureType = CREATURETYPE_SUMMON_OWN;
-		}
+	if (creatureType == CREATURETYPE_SUMMON_OTHERS) {
+		creatureType = CREATURETYPE_SUMMON_OWN;
+	}
 
-		playermsg.addByte(creatureType);
-		if (creatureType == CREATURETYPE_SUMMON_OWN) {
-			const Creature* master = creature->getMaster();
-			if (master) {
-				playermsg.add<uint32_t>(master->getID());
-			} else {
-				playermsg.add<uint32_t>(0);
-			}
+	playermsg.addByte(creatureType);
+	if (creatureType == CREATURETYPE_SUMMON_OWN) {
+		const Creature* master = creature->getMaster();
+		if (master) {
+			playermsg.add<uint32_t>(master->getID());
+		} else {
+			playermsg.add<uint32_t>(0);
 		}
+	}
 
 	if (creatureType == CREATURETYPE_PLAYER) {
 		playermsg.addByte(creature->getPlayer()->getVocation()->getClientId());
@@ -3692,13 +3692,6 @@ void ProtocolGame::AddCreature(const Creature* creature, bool known, uint32_t re
 	playermsg.addByte(creature->getSpeechBubble());
 	playermsg.addByte(0xFF); // MARK_UNMARKED
 	playermsg.addByte(0); // inspection type
-
-	if (otherPlayer) {
-		playermsg.add<uint16_t>(otherPlayer->getHelpers());
-	} else {
-		playermsg.add<uint16_t>(0x00);
-	}
-
 	playermsg.addByte(player->canWalkthroughEx(creature) ? 0x00 : 0x01);
 }
 

@@ -152,13 +152,6 @@ void ProtocolLogin::onRecvFirstMessage(NetworkMessage& msg)
 	 * 1 byte: 0
 	 */
 
-	if (version != CLIENT_PROTOCOL) {
-		std::ostringstream ss;
-		ss << "Only clients with protocol " << CLIENT_PROTOCOL_STR << " allowed!";
-		disconnectClient(ss.str(), version);
-		return;
-	}
-
 	if (!Protocol::RSA_decrypt(msg)) {
 		disconnect();
 		return;
