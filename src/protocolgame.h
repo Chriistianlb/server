@@ -274,8 +274,7 @@ class ProtocolGame final : public Protocol
 
 		void sendCreatureLight(const Creature* creature);
 		void sendWorldLight(LightInfo lightInfo);
-		void sendTibiaTime(int32_t time);
-
+	
 		void sendCreatureSquare(const Creature* creature, SquareColor_t color);
 
 		void sendSpellCooldown(uint8_t spellId, uint32_t time);
@@ -363,7 +362,7 @@ class ProtocolGame final : public Protocol
 
 		uint32_t eventConnect = 0;
 		uint32_t challengeTimestamp = 0;
-		uint16_t version = CLIENT_VERSION_MIN;
+		uint16_t version = CLIENT_PROTOCOL;
 
 		uint8_t challengeRandom = 0;
 
