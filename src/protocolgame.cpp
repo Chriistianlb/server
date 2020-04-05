@@ -250,7 +250,6 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 	OperatingSystem_t operatingSystem = static_cast<OperatingSystem_t>(msg.get<uint16_t>());
 	version = msg.get<uint16_t>();
 	setChecksumMethod(CHECKSUM_METHOD_SEQUENCE);
-	setChecksumMethod(CHECKSUM_METHOD_ADLER32);
 
 	msg.skipBytes(3); // U8 client type, U16 dat revision
 
